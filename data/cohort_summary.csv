@@ -1,0 +1,16 @@
+region,risk_cohort,patients,avg_pdc,non_adherent_rate
+Midwest,High Risk,206,0.444,0.981
+Midwest,Low Risk,63,0.836,0.317
+Midwest,Medium Risk,753,0.657,0.797
+Northeast,High Risk,226,0.438,0.991
+Northeast,Low Risk,69,0.814,0.406
+Northeast,Medium Risk,835,0.658,0.777
+Southeast,High Risk,165,0.437,0.982
+Southeast,Low Risk,49,0.841,0.347
+Southeast,Medium Risk,635,0.665,0.756
+Southwest,High Risk,243,0.45,0.967
+Southwest,Low Risk,111,0.82,0.369
+Southwest,Medium Risk,874,0.67,0.788
+West,High Risk,151,0.423,0.993
+West,Low Risk,61,0.797,0.443
+West,Medium Risk,559,0.666,0.762
