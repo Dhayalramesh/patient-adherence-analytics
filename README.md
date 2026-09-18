@@ -3,7 +3,7 @@
 A pharma decision-analytics project analyzing medication adherence patterns across a synthetic 5,000-patient claims dataset — built to demonstrate the analytical stack used in pharma/life-sciences consulting: statistical modeling, cross-language validation, and client-facing interactive dashboards.
 
 **Live Demos:**
-- 📊 Streamlit Dashboard: [patient-adherence-analytics-xxxxx.streamlit.app](#)
+- 📊 Streamlit Dashboard: https://patient-adherence-analytics-vbqstmfevndnhbhktbjtj7.streamlit.app/
 - 📈 Tableau Public Dashboard: [public.tableau.com/app/profile/dhayal.ramesh/viz/PatientAdherenceAnalytics](https://public.tableau.com/app/profile/dhayal.ramesh/viz/PatientAdherenceAnalytics/PatientAdherenceMarketAccessAnalytics?publish=yes)
 
 ---
