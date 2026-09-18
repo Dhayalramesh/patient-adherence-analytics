@@ -15,7 +15,7 @@ Patient medication adherence — whether people actually take prescribed drugs a
 This project simulates that workflow end-to-end:
 1. Generate a realistic synthetic patient claims dataset
 2. Model the drivers of non-adherence using logistic regression
-3. Validate the model across two languages (Python and R)
+3. Validate the model across three implementations (Python, R, and PySpark)
 4. Segment patients into risk cohorts by region
 5. Deliver findings through two interactive dashboards (Streamlit and Tableau Public)
 
@@ -33,7 +33,7 @@ Note: this is a synthetic dataset built for portfolio purposes, not real patient
 
 ## Methodology
 
-**Logistic regression** models non-adherence as a function of age, copay tier, mail-order use, comorbidity count, and new-to-therapy status. The model was built independently in **Python (statsmodels)** and **R (glm)** using the identical formula, then cross-checked — odds ratios matched within rounding error across both implementations, confirming the result isn't an artifact of one tool's defaults.
+**Logistic regression** models non-adherence as a function of age, copay tier, mail-order use, comorbidity count, and new-to-therapy status. The model was built independently in **Python (statsmodels)** and **R (glm)** using the identical formula, then cross-checked — odds ratios matched within rounding error across both implementations, confirming the result isn't an artifact of one tool's defaults. A third implementation in **PySpark** (`pyspark.ml`, run in local mode) reproduces the same odds ratios, with a Spark SQL window-function cohort summary and a held-out evaluation (AUC 0.83). The dataset is small, so the Spark version demonstrates the workflow rather than big-data scale.
 
 **Key findings:**
 | Factor | Odds Ratio | Effect |
@@ -54,11 +54,13 @@ patient-adherence-analytics/
 ├── data/
 │   ├── patient_adherence.csv       # Full patient-level dataset (Python-generated)
 │   ├── cohort_summary.csv          # Region x risk-cohort aggregates
-│   └── logistic_regression_odds_ratios.csv
+│   ├── logistic_regression_odds_ratios.csv
+│   └── pyspark_logistic_regression_odds_ratios.csv   # Spark vs statsmodels vs R comparison
 ├── notebooks/
-│   └── 01_data_and_model.ipynb     # Python: data generation, EDA, logistic regression
+│   ├── patient_adherence_analytics.ipynb   # Python: data generation, EDA, logistic regression
+│   └── 03_pyspark_analysis.ipynb           # PySpark: Spark SQL, pyspark.ml logistic regression
 └── r/
-    ├── 02_r_analysis.ipynb         # R: parallel model, cross-validated against Python
+    ├── 02_r_analysis_ipynb.ipynb   # R: parallel model, cross-validated against Python
     ├── logistic_regression_odds_ratios_R.csv
     ├── cohort_summary_R.csv
     └── adherence_eda_R.png
@@ -68,6 +70,7 @@ patient-adherence-analytics/
 
 - **Python**: pandas, statsmodels, matplotlib, seaborn (modeling & EDA)
 - **R**: dplyr, ggplot2, broom (parallel modeling & validation)
+- **PySpark**: Spark DataFrames, Spark SQL window functions, `pyspark.ml` logistic regression (local mode)
 - **Streamlit + Plotly**: interactive web dashboard, deployed on Streamlit Community Cloud
 - **Tableau Public**: interactive BI dashboard with regional filtering and drill-down
 
@@ -88,7 +91,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-**Notebooks:** Open `notebooks/01_data_and_model.ipynb` or `r/02_r_analysis.ipynb` in Google Colab (Python and R runtimes respectively) and run all cells. The Python notebook generates the source dataset used by every other component.
+**Notebooks:** Open `notebooks/patient_adherence_analytics.ipynb`, `r/02_r_analysis_ipynb.ipynb`, or `notebooks/03_pyspark_analysis.ipynb` in Google Colab (Python, R, and Python runtimes respectively) and run all cells. The Python notebook generates the source dataset used by every other component. For the PySpark notebook, uncomment the `pip install pyspark` line in the first cell; it loads the dataset from this repo automatically.
 
 ## Author
 
