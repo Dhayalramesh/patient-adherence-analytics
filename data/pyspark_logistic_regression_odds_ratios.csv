@@ -1,0 +1,8 @@
+term,spark_odds_ratio,statsmodels_or,abs_diff_vs_statsmodels,r_glm_or,abs_diff_vs_r
+Intercept,8.764,8.764,0.0,8.764,0.0
+age,0.961,0.961,0.0,0.961,0.0
+copay_medium,2.417,2.417,0.0,2.417,0.0
+copay_high,13.812,13.812,0.0,13.812,0.0
+mail_order,0.243,0.243,0.0,0.243,0.0
+n_comorbidities,1.739,1.739,0.0,1.739,0.0
+new_to_therapy,7.207,7.207,0.0,7.207,0.0
